@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-# Setup SQLite and secret flag
+#Setup SQLite and not so secret flag
 def init_db():
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
@@ -50,7 +50,7 @@ def index():
     '''
 
 
-# Logs each attempt to logs.json
+#Logs each attempt to logs.json
 def log_attempt(username_input, query, ip):
     log_entry = {
         "timestamp": str(datetime.datetime.now()),
@@ -59,19 +59,19 @@ def log_attempt(username_input, query, ip):
         "query": query
     }
 
-    # Create logs.json if it doesn't exist
+    #Create our logs.json if it doesn't exist
     if not os.path.exists("logs.json"):
         with open("logs.json", "w") as f:
             json.dump([], f)
 
-    # Read existing logs
+    #Read existing logs
     with open("logs.json", "r") as f:
         logs = json.load(f)
 
-    # Append the new log
+    # ppend the new log
     logs.append(log_entry)
 
-    # Write back to file
+    #Write back to file
     with open("logs.json", "w") as f:
         json.dump(logs, f, indent=2)
 
@@ -81,10 +81,10 @@ def login():
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
 
-    # Vulnerable query
+    #Vulnerable query right here
     query = f"SELECT * FROM users WHERE username = '{username}'"
 
-    # Log the injection attempt
+    #Logging the injection attempts because logging always helps
     log_attempt(username, query, request.remote_addr)
 
     try:
