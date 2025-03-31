@@ -27,7 +27,7 @@ def index():
             <input type="submit" value="Login">
         </form>
 
-        <h3>💡 Hints (click to reveal)</h3>
+        <h3> Hints (click to reveal)</h3>
         <div onclick="toggleHint(1)" style="cursor:pointer; border:1px solid #aaa; padding:10px; margin:10px; border-radius:8px;">
             Hint 1: <span id="hint1" style="display:none;">Just because you don't see anything doesn’t mean you're blind.</span>
         </div>
